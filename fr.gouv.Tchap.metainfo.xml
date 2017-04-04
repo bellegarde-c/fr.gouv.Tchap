@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>fr.gouv.Tchap</id>
+  <name>Tchap Desktop</name>
+  <project_license>AGPL-3.0-only</project_license>
+  <developer_name>DINUM</developer_name>
+  <summary>Private messenger</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <url type="homepage">https://tchap.numerique.gouv.fr/</url>
+  <url type="bugtracker">https://github.com/tchapgouv/tchap-desktop/issues</url>
+  <url type="vcs-browser">https://github.com/tchapgouv/tchap-desktop</url>
+  <launchable type="desktop-id">fr.gouv.Tchap.desktop</launchable>
+  <description>
+    <p>More than messaging: secure collaboration for the French public sector</p>
+    <ul>
+      <li>Communicate securely with colleagues across government departments and public administrations through dedicated discussion rooms that retain conversation history and shared information.</li>
+      <li>Move beyond traditional group emails: create or join rooms dedicated to projects, teams, topics or events. Manage access and choose the appropriate level of information sharing within your organisation.</li>
+      <li>Stay informed without being overwhelmed: customise your notifications to focus on the conversations and information that matter to you.</li>
+      <li>Never miss an important message: mention colleagues directly and use keyword notifications to keep track of relevant discussions.</li>
+      <li>Enhance collaboration with integrations and bots that support everyday communication and productivity needs.</li>
+    </ul>
+    <p>Tchap is the secure instant messaging and collaboration solution provided by the French government for public sector professionals.</p>
+    <p>It enables government employees to communicate and collaborate across administrations while respecting the security and confidentiality requirements of public sector communications.</p>
+  </description>
+  <screenshots>
+    <screenshot type="default">
+      <image type="source">https://pic.clubic.com/51cf93e22289477/1600x900/smart/la-messagerie-instantane-e-se-curise-e-de-l-e-tat-franc-ais.jpg</image>
+      <caption>Typical view of the window</caption>
+    </screenshot>
+  </screenshots>
+  <provides>
+    <id>fr.gouv.Tchap.desktop</id>
+  </provides>
+  <releases>
+    <release version="4.21.5" date="2026-09-02">
+      <description></description>
+    </release>
+  </releases>
+  <content_rating type="oars-1.1">
+    <content_attribute id="social-chat">intense</content_attribute>
+    <content_attribute id="social-audio">intense</content_attribute>
+    <content_attribute id="social-contacts">intense</content_attribute>
+  </content_rating>
+  <update_contact>b@bpiotrowski.pl</update_contact>
+</component>

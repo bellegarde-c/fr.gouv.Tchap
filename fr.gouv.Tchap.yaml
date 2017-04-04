@@ -1,0 +1,50 @@
+id: fr.gouv.Tchap
+runtime: org.gnome.Platform
+runtime-version: '51'
+sdk: org.gnome.Platform
+command: tchap-desktop
+separate-locales: false
+finish-args:
+  # X11 performance
+  - --share=ipc
+  # We need X11
+  - --socket=fallback-x11
+  # Access to wayland
+  - --socket=wayland
+  # Audio Access
+  - --socket=pulseaudio
+  # All devices (camera, microphone for calls)
+  - --device=all
+  # Network Access
+  - --share=network
+  # Secrets storage
+  - --talk-name=org.freedesktop.secrets
+  - --talk-name=org.kde.kwalletd6
+
+modules:
+  - name: tchap-desktop
+    buildsystem: simple
+    build-commands:
+      - |
+        bsdtar -Oxf tchap-desktop.deb 'data.tar.gz' |
+          bsdtar -xf - \
+            --exclude='./usr/share/doc'
+      - install -Dm0644 "usr/share/applications/Tchap.desktop" "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
+
+      - |
+        for size in 32x32 128x128 256x256@2; do
+          install -Dm0644 "usr/share/icons/hicolor/${size}/apps/tchap-desktop.png" "${FLATPAK_DEST}/share/icons/hicolor/${size}/apps/${FLATPAK_ID}.png"
+        done
+      - install -Dm0755 usr/bin/tchap-desktop "${FLATPAK_DEST}/bin/tchap-desktop"
+      - install -Dm0644 "${FLATPAK_ID}.metainfo.xml" "${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml"
+      - desktop-file-edit --set-key=Exec --set-value='/app/bin/tchap-desktop %U' "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
+      - desktop-file-edit --set-key=Icon --set-value="${FLATPAK_ID}" "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
+      - desktop-file-edit --set-key=Categories --set-value="Network;InstantMessaging;Chat;VideoConference;" "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
+      - desktop-file-edit --set-key=X-Flatpak-RenamedFrom --set-value='tchap-desktop.desktop;' "${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop"
+    sources:
+      - type: file
+        dest-filename: tchap-desktop.deb
+        url: https://github.com/tchapgouv/tchap-desktop/releases/download/tchap-4.21.5/Tchap-prod_4.21.5_amd64.deb
+        sha256: 0f8e17ab773b47347f754e317a4a18593ae69551c9d7928da616d70b85d90a18
+      - type: file
+        path: fr.gouv.Tchap.metainfo.xml
